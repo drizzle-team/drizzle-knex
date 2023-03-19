@@ -21,6 +21,7 @@ import {
   supplierIds,
 } from "./meta";
 import { knex } from "knex";
+import { ConsoleLogWriter } from "drizzle-orm";
 
 const sqlite = new Database("datapack/_sqlite.db");
 const drzldb = drizzle(sqlite);
@@ -40,12 +41,14 @@ declare module "knex/types/tables" {
 const db = knex({
   client: "better-sqlite3", // 'sqlite3'
   connection: {
-    filename: "nw.sqlite",
+    filename: "datapack/_sqlite.db",
   },
+  useNullAsDefault: true
 });
 
 const main = async () => {
   const res = await db("customer");
+  
   const drizzleRes = drzldb.select().from(customers).all();
 
   for (const id of customerIds) {
@@ -161,6 +164,7 @@ const main = async () => {
       .leftJoin("product", "product.id", "order_detail.product_id")
       .leftJoin("order", "order.id", "order_detail.order_id");
   }
+  process.exit(0)
 };
 
 main();
