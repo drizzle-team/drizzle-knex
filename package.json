@@ -1,0 +1,23 @@
+{
+  "name": "drizzle-knex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "generate": "drizzle-kit generate:sqlite --schema=src/schema.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^8.2.0",
+    "drizzle-orm": "0.22.0-cfe1679",
+    "knex": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.3",
+    "drizzle-kit": "^0.17.0",
+    "tsx": "^3.12.5"
+  }
+}
